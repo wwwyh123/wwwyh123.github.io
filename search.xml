@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Element el-row,el-col布局</title>
+      <link href="/2024/11/10/Element-el-row-el-col%E5%B8%83%E5%B1%80/"/>
+      <url>/2024/11/10/Element-el-row-el-col%E5%B8%83%E5%B1%80/</url>
+      
+        <content type="html"><![CDATA[<p>element的布局方式与bootstrap原理是一样的，将网页划分成若干行，然后每行等分为若干列，基于这样的方式进行布局，形象的成为栅栏布局。<br>区别是element可将每行划分为24个分栏，而bootstrap是划分为12个分栏，从使用角度，还是24个分栏更加精细。</p><h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>首先每行使用<el-row>标签标识，然后每行内的列使用<el-col>标识，至于每列整行的宽度比例，则使用:span属性进行设置。</el-col></el-row></p><h3 id="分栏间隔"><a href="#分栏间隔" class="headerlink" title="分栏间隔"></a>分栏间隔</h3><p>有时候想为不同分栏之间设定一定的间隔，可以使用<el-row>标签的:gutter属性，注意默认间隔为0。<br>以下写法不生效：</el-row></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;分栏间隔 无效&lt;/span&gt;</span><br><span class="line">    &lt;el-row :gutter=&quot;50&quot;&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot; class=&quot;lightgreen-box&quot;&gt;示例2&lt;/el-col&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot; class=&quot;orange-box&quot;&gt;示例2&lt;/el-col&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot; class=&quot;lightgreen-box&quot;&gt;示例2&lt;/el-col&gt;</span><br><span class="line">    &lt;/el-row&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;分栏间隔 有效&lt;/span&gt;</span><br><span class="line">    &lt;el-row :gutter=&quot;24&quot;&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;lightgreen-box&quot;&gt;示例3&lt;/div&gt;</span><br><span class="line">      &lt;/el-col&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;orange-box&quot;&gt;示例3&lt;/div&gt;</span><br><span class="line">      &lt;/el-col&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;lightgreen-box&quot;&gt;示例3&lt;/div&gt;</span><br><span class="line">      &lt;/el-col&gt;</span><br><span class="line">    &lt;/el-row&gt;</span><br></pre></td></tr></table></figure><h3 id="分栏偏移"><a href="#分栏偏移" class="headerlink" title="分栏偏移"></a>分栏偏移</h3><p>有时候想让某个分栏不从左边显示，而是直接显示到中间或者右侧，例如右侧导航栏，我们希望它处于右侧且占据页面1&#x2F;3的宽度。此时可以借助offset属性来实现，表示偏移量。<br>此时，想占据1&#x2F;3宽度，则:span应为8，偏移量应为24-8&#x3D;16，所以代码如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;分栏偏移&lt;/span&gt;</span><br><span class="line">    &lt;el-row&gt;</span><br><span class="line">      &lt;el-col :span=&quot;8&quot; :offset=&quot;16&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;lightgreen-box&quot;&gt;示例4&lt;/div&gt;</span><br><span class="line">      &lt;/el-col&gt;</span><br><span class="line">    &lt;/el-row&gt;</span><br><span class="line">    &lt;el-divider&gt;&lt;/el-divider&gt;//分割线</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Element组件 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>TypeScript</title>
       <link href="/2024/11/07/TypeScript/"/>
       <url>/2024/11/07/TypeScript/</url>
