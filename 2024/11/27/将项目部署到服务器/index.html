@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>将项目部署到服务器 | HRecording</title><meta name="author" content="Wyh"><meta name="copyright" content="Wyh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="大致步骤 本机打开windos+R 打开mstsc &#x2F;admin,点击确定，出现  将自己买的服务器的公网ip填进去，点击连接。就可以进入购买的服务器的windows操作系统。注意这里的用户名是Administer,试了root和administer都不对  在该windows中安装nginx。http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;download.html下载后解压即可。具体操作步骤：http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将项目部署到服务器">
+<meta property="og:url" content="http://wwwyh123.github.io/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html">
+<meta property="og:site_name" content="HRecording">
+<meta property="og:description" content="大致步骤 本机打开windos+R 打开mstsc &#x2F;admin,点击确定，出现  将自己买的服务器的公网ip填进去，点击连接。就可以进入购买的服务器的windows操作系统。注意这里的用户名是Administer,试了root和administer都不对  在该windows中安装nginx。http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;download.html下载后解压即可。具体操作步骤：http">
+<meta property="og:locale">
+<meta property="og:image" content="http://wwwyh123.github.io/images/xu2.jpg">
+<meta property="article:published_time" content="2024-11-27T10:34:52.000Z">
+<meta property="article:modified_time" content="2024-11-27T12:16:40.502Z">
+<meta property="article:author" content="Wyh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wwwyh123.github.io/images/xu2.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://wwwyh123.github.io/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '将项目部署到服务器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/xu2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">HRecording</span></a><a class="nav-page-title" href="/"><span class="site-name">将项目部署到服务器</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">将项目部署到服务器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-11-27T10:34:52.000Z" title="Created 2024-11-27 18:34:52">2024-11-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2024-11-27T12:16:40.502Z" title="Updated 2024-11-27 20:16:40">2024-11-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>4mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="大致步骤"><a href="#大致步骤" class="headerlink" title="大致步骤"></a>大致步骤</h1><ol>
+<li><p>本机打开windos+R 打开<code>mstsc /admin</code>,点击确定，出现</p>
+<img src="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/image copy.png" height="150px" width="200px">
+将自己买的服务器的公网ip填进去，点击连接。就可以进入购买的服务器的windows操作系统。注意这里的用户名是Administer,试了root和administer都不对
+</li>
+<li><p>在该windows中安装nginx。<br><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a><br><img src="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/image copy 2.png" height="150px" width="300px">下载后解压即可。<br>具体操作步骤：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31762741/article/details/121796712">https://blog.csdn.net/qq_31762741/article/details/121796712</a><br>打开文件夹，cmd 中输入<code>start nginx</code>以启动Nginx<br>如果窗口闪了一下，在浏览器中打开<a href="http://localhost:80,则表示安装成功。">http://localhost:80,则表示安装成功。</a></p>
+</li>
+<li><p>修改nginx配置<br>只需要修改以下两项 </p>
+<img src="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/image.png" height="150px" width="200px">
+listen   80;表示你的端口号
+server_name 你买的服务器的Ip
+root html;
+这个指令指定了请求的根目录。在这个例子中，root html; 意味着当Nginx接收到请求时，它会在服务器的文件系统中查找一个名为 html 的目录，并将这个目录作为请求的根目录。
+需要注意的是，这里的 html 目录是相对于Nginx配置文件中定义的根路径（例如，通过 prefix 指令或编译时指定的默认路径）或者是绝对路径（如果 html 前有 /，表示从根文件系统开始）。
+index index.html index.htm;
+这个指令指定了当请求是一个目录而非文件时，Nginx 应该尝试返回哪个文件作为默认页面。在这个例子中，index index.html index.htm; 指示Nginx，如果请求的是一个目录（例如，仅仅请求了 / 而没有指定具体文件），则Nginx会尝试依次查找该目录下的 index.htm 文件。
+综上所述，这段配置的目的是告诉Nginx，当接收到对根URL（/）的请求时，应该在服务器的 html 目录下查找资源，如果请求的是一个目录，则尝试返回该目录下的 index.html 文件。
+</li>
+<li><p>修改完在此路径下的cmd 中输入<code>nginx -s reload</code></p>
+</li>
+<li><p>配置安全组<br>在你的服务器实例上配置一个以你的端口号为端口范围的入方向的配置规则。</p>
+</li>
+<li><p>在防火墙中设置一个入站规则<br><img src="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/image copy 3.png" height="150px" width="200px">只需要改如图的配置即可。<br>最后，在任意ip输入你的服务器公网ip+端口号就可以访问！</p>
+</li>
+</ol>
+<h1 id="还有一些收获和没有解决的问题"><a href="#还有一些收获和没有解决的问题" class="headerlink" title="还有一些收获和没有解决的问题"></a>还有一些收获和没有解决的问题</h1><p>一开始跟着老师用的是electerm ,但是怎么都连不上，一直提示CONNECTREFUSED，先解决了安全组规则配置的问题-&gt;防火墙添加自己设置的端口-&gt;nginx的安装-&gt;用户名是什么-&gt;到现在还没有解决…</p>
+<h2 id="在Windows电脑上启动并配置SSH服务"><a href="#在Windows电脑上启动并配置SSH服务" class="headerlink" title="在Windows电脑上启动并配置SSH服务"></a>在Windows电脑上启动并配置SSH服务</h2><p>SSH全称secure shell，安全外壳协议（安全的shell），是一个计算机网络协议（默认端口号为22）。通过ssh协议可以在客户端安全（提供身份认证、信息加密）的远程连接LInux服务器或其他设备。<br>SSH远程连接之后，就可以像操作本地的机器一样操作远程机器。当需要操控的机器不在本地时就可以使用ssh协议远程连接操控。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51720581/article/details/131796669">https://blog.csdn.net/m0_51720581/article/details/131796669</a><br>1.按下Win+R键输入services.msc,在服务列表中查找“OpenSSH SSH Server”服务.如果没找到就说明没有安装。<br>安装SSH服务：<br>搜索可选功能-&gt;添加可选功能-&gt;找到OpenSSH服务器-&gt;添加。<br>安装后，重复1的操作，点击启动服务，并且右击-&gt;属性-&gt;启动类型-&gt;’自动’-&gt;确定。<br>2.设置防火墙规则以允许SSH连接。在“控制面板”中的“Windows Defender 防火墙”设置中，允许端口22（SSH默认端口）的入站连接。</p>
+<h2 id="利用Workbench远程连接-连接linux实例"><a href="#利用Workbench远程连接-连接linux实例" class="headerlink" title="利用Workbench远程连接(连接linux实例)"></a>利用Workbench远程连接(连接linux实例)</h2> <img src="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/image copy 4.png" height="150px" width="300px">
+<img src="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/image4.png" height="150px" width="300px">
+就可以进入远程操作系统界面了
+
+<p>确保Workbench已正确安装并配置：<br>Workbench应已安装在你的本地计算机上，并且能够成功连接到阿里云的远程服务器。<br>准备要上传的本地项目：<br>确定你要上传的本地项目文件夹，并确保其中包含所有必要的文件和子文件夹。<br>二、上传项目<br>打开Workbench：<br>启动Workbench，并登录到你的阿里云远程服务器。<br>打开文件树：<br>在Workbench的顶部菜单栏中，找到并点击“文件”选项，然后选择“打开新文件树”。<br>导航到目标位置：<br>在文件树中，导航到你希望上传项目文件的远程服务器目录。<br>上传文件：<br>右键点击目标目录，选择“上传文件”。<br>在弹出的文件选择对话框中，浏览本地计算机，找到并选择你要上传的项目文件夹（注意，如果Workbench支持直接上传文件夹，可以直接选择文件夹；如果不支持，则需要逐个上传文件夹内的文件）。<br>选择文件后，点击“打开”或“确定”开始上传。<br>等待上传完成：<br>Workbench会显示上传进度，你可以等待上传完成。<br>上传完成后，你可以在远程服务器的目录中看到已经上传的项目文件。<br>三、注意事项<br>文件大小限制：<br>需要注意Workbench对上传文件的大小限制。如果项目文件过大，可能需要考虑使用其他工具（如WinSCP、FTP客户端等）进行上传。<br>网络稳定性：<br>在上传过程中，确保网络连接稳定，以避免上传失败或文件损坏。<br>权限问题：<br>确保你在远程服务器上具有足够的权限来上传文件到目标位置。如果权限不足，可能需要联系服务器管理员进行权限调整。<br>文件完整性：<br>上传完成后，建议检查上传的文件是否完整，并验证其功能和性能是否与本地版本一致。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://wwwyh123.github.io">Wyh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://wwwyh123.github.io/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/">http://wwwyh123.github.io/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/xu2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2024/11/26/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="每日一题"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">每日一题</div></div><div class="info-2"><div class="info-item-1">html1.页面导入样式时，使用link和@import有什么区别?答：     link @import    语法 html标签 css语法   在js中 可以被动态修改 不可以在js中被修改   支持资源类型 支持多种资源，如 CSS、图标、字体等 只支持 CSS 文件   加载方式 浏览器并行加载HTML和CSS 先加载...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/xu2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wyh</div><div class="author-info-description">正确的开始，微小的长进，然后持续。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wwwyh123"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to my blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E8%87%B4%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.</span> <span class="toc-text">大致步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%98%E6%9C%89%E4%B8%80%E4%BA%9B%E6%94%B6%E8%8E%B7%E5%92%8C%E6%B2%A1%E6%9C%89%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">还有一些收获和没有解决的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Windows%E7%94%B5%E8%84%91%E4%B8%8A%E5%90%AF%E5%8A%A8%E5%B9%B6%E9%85%8D%E7%BD%AESSH%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.1.</span> <span class="toc-text">在Windows电脑上启动并配置SSH服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8Workbench%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5-%E8%BF%9E%E6%8E%A5linux%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">利用Workbench远程连接(连接linux实例)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/27/%E5%B0%86%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="将项目部署到服务器">将项目部署到服务器</a><time datetime="2024-11-27T10:34:52.000Z" title="Created 2024-11-27 18:34:52">2024-11-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/26/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="每日一题">每日一题</a><time datetime="2024-11-26T11:57:04.000Z" title="Created 2024-11-26 19:57:04">2024-11-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/21/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" title="Vue3组件通信方式">Vue3组件通信方式</a><time datetime="2024-11-21T10:26:17.000Z" title="Created 2024-11-21 18:26:17">2024-11-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/%E5%85%B3%E4%BA%8EPinia/" title="关于Pinia">关于Pinia</a><time datetime="2024-11-10T10:05:19.000Z" title="Created 2024-11-10 18:05:19">2024-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/11/10/guigu2/" title="guigu2">guigu2</a><time datetime="2024-11-10T09:41:01.000Z" title="Created 2024-11-10 17:41:01">2024-11-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By Wyh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional and Simplified Chinese">2</button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
