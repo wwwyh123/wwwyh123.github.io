@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>可拖拽组件</title>
+      <link href="/2024/12/24/%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6/"/>
+      <url>/2024/12/24/%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<p>用到的原生DOM事件</p><ul><li><code>@mousedown=&quot;handlerMouseDown</code>，默认参数为event，鼠标等在dom元素上按下时触发事件</li><li><code>@dragover.prevent @drop=&quot;onDrop&quot;</code> 用于处理拖拽事件的指令；@dragover.prevent：这个指令监听 dragover 事件，.prevent 修饰符用于阻止事件的默认行为（默认行为可能会阻止放置操作）。</li></ul><h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><p>将列表拆分成组件时，<code>onMouseDown</code>需要绑定在子组件上，但函数体在父组件中，因此用到了父子组件通信，由于是父给子传递信息，可以用props；但是，如果在子组件中直接写<code>@mousedown=&quot;handlerMouseDown(e, type)&quot;</code>的话，无法获取到事件e，因为 e 并不是在模板作用域中定义的变量。解决这个问题，可以有以下两种方法：</p><ol><li>直接使用箭头函数<code> @mousedown=&quot;(e) =&gt; handlerMouseDown(e, type)&quot;</code>(影响性能不推荐)</li><li>让 Vue 自动传递事件对象：<code> @mousedown=&quot;handlerMouseDown($event, type)&quot;</code></li></ol>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>node.js</title>
       <link href="/2024/12/16/node-js/"/>
       <url>/2024/12/16/node-js/</url>
