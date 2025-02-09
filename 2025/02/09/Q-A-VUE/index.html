@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Q&amp;A(VUE) | HRecording</title><meta name="author" content="Wyh"><meta name="copyright" content="Wyh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="vuevue生命周期Vue实例从创建到销毁的过程，就是生命周期 Vue的生命周期钩子中，created和mounted的区别是什么？ created：实例已创建，但DOM未挂载（不可操作DOM）。 mounted：DOM已挂载到页面，可操作DOM。适用场景： created：初始化数据（如API请求）。 mounted：操作DOM或集成第三方库（如初始化图表）。  什么是虚拟DOM？为什么需要它？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Q&amp;A(VUE)">
+<meta property="og:url" content="http://wwwyh123.github.io/2025/02/09/Q-A-VUE/index.html">
+<meta property="og:site_name" content="HRecording">
+<meta property="og:description" content="vuevue生命周期Vue实例从创建到销毁的过程，就是生命周期 Vue的生命周期钩子中，created和mounted的区别是什么？ created：实例已创建，但DOM未挂载（不可操作DOM）。 mounted：DOM已挂载到页面，可操作DOM。适用场景： created：初始化数据（如API请求）。 mounted：操作DOM或集成第三方库（如初始化图表）。  什么是虚拟DOM？为什么需要它？">
+<meta property="og:locale">
+<meta property="og:image" content="http://wwwyh123.github.io/images/xu2.jpg">
+<meta property="article:published_time" content="2025-02-09T09:08:43.000Z">
+<meta property="article:modified_time" content="2025-02-09T09:11:21.992Z">
+<meta property="article:author" content="Wyh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wwwyh123.github.io/images/xu2.jpg"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://wwwyh123.github.io/2025/02/09/Q-A-VUE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Q&A(VUE)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/xu2.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">HRecording</span></a><a class="nav-page-title" href="/"><span class="site-name">Q&amp;A(VUE)</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-graduation-cap"></i><span> 博文</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 相册</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Q&amp;A(VUE)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-02-09T09:08:43.000Z" title="Created 2025-02-09 17:08:43">2025-02-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-02-09T09:11:21.992Z" title="Updated 2025-02-09 17:11:21">2025-02-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word Count:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading Time:</span><span>7mins</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h1><h2 id="vue生命周期"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a>vue生命周期</h2><p>Vue实例从创建到销毁的过程，就是生命周期</p>
+<h2 id="Vue的生命周期钩子中，created和mounted的区别是什么？"><a href="#Vue的生命周期钩子中，created和mounted的区别是什么？" class="headerlink" title="Vue的生命周期钩子中，created和mounted的区别是什么？"></a>Vue的生命周期钩子中，created和mounted的区别是什么？</h2><ul>
+<li>created：实例已创建，但DOM未挂载（不可操作DOM）。</li>
+<li>mounted：DOM已挂载到页面，可操作DOM。<br>适用场景：</li>
+<li>created：初始化数据（如API请求）。</li>
+<li>mounted：操作DOM或集成第三方库（如初始化图表）。</li>
+</ul>
+<h2 id="什么是虚拟DOM？为什么需要它？"><a href="#什么是虚拟DOM？为什么需要它？" class="headerlink" title="什么是虚拟DOM？为什么需要它？"></a>什么是虚拟DOM？为什么需要它？</h2><p>虚拟DOM（Virtual DOM） 是一个轻量级的JavaScript对象，描述真实DOM的结构。<br>作用：<br>性能优化：通过Diff算法对比新旧虚拟DOM，最小化真实DOM操作。<br>跨平台：抽象渲染层（如渲染到Web、Native）。<br>Vue中的虚拟DOM：通过render函数生成，更新时对比差异后局部更新真实DOM。</p>
+<h2 id="数据代理"><a href="#数据代理" class="headerlink" title="数据代理"></a>数据代理</h2><p>通过vm对象来代理data对象中的属性的操作。vm身上有的是_data，而没有data。然后通过<code>Object.definePropoty</code>的<code>getter</code>读取到_data里的数据复制一份到vm身上。<br>好处：更加方便的操作data中的数据<br>基本原理：通过<code>Object.defineProperty()</code>把<code>data</code>对象中的所有属性添加到vm上。为每一个添加到vm上的属性都指定一个getter和setter。在getter&#x2F;setter内部去操作（读&#x2F;写）data中对应的属性。</p>
+<h2 id="数据双向绑定的基本原理"><a href="#数据双向绑定的基本原理" class="headerlink" title="数据双向绑定的基本原理"></a>数据双向绑定的基本原理</h2><p>采用<strong>数据劫持</strong>结合<strong>发布者-订阅者模式</strong>的方式。<br>数据劫持：通过<code>Object.defineProperty()</code>来劫持对象各个属性的<code>getter</code>,<code>setter</code><br>发布订阅者模式：在数据变动时发布者发布消息给订阅者，触发相应监听回调<br>当把一个普通的js对象传给vue实例来作为它的data选项时，vue将遍历它的属性，用<code>Object.defineProperty()</code>监听它们的<code>getter/setter</code>方法。这样，他们就可以让vue追踪依赖，在对象的属性被访问和修改时通知变化</p>
+<h2 id="Vue2和Vue3在响应式原理上的主要区别是什么？"><a href="#Vue2和Vue3在响应式原理上的主要区别是什么？" class="headerlink" title="Vue2和Vue3在响应式原理上的主要区别是什么？"></a>Vue2和Vue3在响应式原理上的主要区别是什么？</h2><p>Vue2:使用<code>Object.defineProperty()</code>监听数据变化，访问时触发getter，修改时触发setter来更新视图，但它有局限性：无法监听数组索引的内容更改和新属性的添加与删除。需要借助(Vue.set())<br>Vue3:采用了 Proxy 来实现响应式，它能劫持整个对象及其嵌套的对象，能够监听数组索引、对象的新增属性等，性能和灵活性更好。</p>
+<h2 id="Vue中的nextTick是什么？它的作用是什么？"><a href="#Vue中的nextTick是什么？它的作用是什么？" class="headerlink" title="Vue中的nextTick是什么？它的作用是什么？"></a>Vue中的nextTick是什么？它的作用是什么？</h2><p>Vue 提供的一个 API，用于在 DOM 更新后执行某些操作。Vue 会将 DOM 更新操作和 JavaScript 执行操作放入异步队列中。<br>使用场景： 1. 修改数据后立即操作DOM   2. 确保视图更新后再执行某些逻辑</p>
+<h2 id="Vue的v-if和v-show有什么区别？性能上有何差异？"><a href="#Vue的v-if和v-show有什么区别？性能上有何差异？" class="headerlink" title="Vue的v-if和v-show有什么区别？性能上有何差异？"></a>Vue的v-if和v-show有什么区别？性能上有何差异？</h2><p>v-if：根据条件动态地创建和销毁 DOM 元素。当条件为 false 时，元素会被销毁；当条件为 true 时，元素会被创建。适用于条件变化不频繁的场景。<br>v-show：通过切换元素的 display 样式来控制元素显示与否，元素会始终存在 DOM 中，只是改变其 CSS 样式的显示或隐藏。适用于频繁切换的场景。</p>
+<h2 id="什么是Vue的混入（Mixin）？它的优缺点是什么？"><a href="#什么是Vue的混入（Mixin）？它的优缺点是什么？" class="headerlink" title="什么是Vue的混入（Mixin）？它的优缺点是什么？"></a>什么是Vue的混入（Mixin）？它的优缺点是什么？</h2><p>Mixin 是 Vue 提供的一种机制，它允许将多个组件的逻辑提取并共享到不同的组件中。通过定义一个包含 data、methods、computed，生命周期钩子 等的混入对象，在多个组件中复用该逻辑。<br>优点：代码复用性高，能够避免逻辑的重复。<br>缺点：可能导致命名冲突（尤其是当多个 mixin 中有相同的方法、数据时），会增加调试和维护的复杂度。大规模使用时，可能让代码变得难以追踪。</p>
+<h2 id="Vue3的语法糖解决了什么问题？"><a href="#Vue3的语法糖解决了什么问题？" class="headerlink" title="Vue3的&lt;script setup&gt;语法糖解决了什么问题？"></a>Vue3的<code>&lt;script setup&gt;</code>语法糖解决了什么问题？</h2><p><code>&lt;script setup&gt;</code>是 Vue3 提供的一种新语法糖，用于简化组件的编写。它通过<code>&lt;script setup&gt;</code>标签，减少了重复的 import 和 return，并且优化了组件的编译过程，提升了性能。它主要解决了 Composition API 使用时的样板代码问题，使代码更加简洁和易读。</p>
+<ul>
+<li>更少的样板代码：不需要 export default 或 setup() 函数。</li>
+<li>直接使用组合式 API：可以直接使用 ref, computed 等 Vue 3 的组合式 API。</li>
+<li>模板访问：在 <code>&lt;script setup&gt;</code> 中声明的所有变量和函数都可以直接在模板中访问。</li>
+<li>类型支持：支持 TypeScript，可以直接声明 props 和自定义事件的类型</li>
+<li>性能优化：由于模板会被编译成同一作用域内的渲染函数，避免了渲染上下文代理对象，从而提高了运行时性能</li>
+</ul>
+<h2 id="nextTick实现原理"><a href="#nextTick实现原理" class="headerlink" title="nextTick实现原理"></a>nextTick实现原理</h2><p><code>nextTick</code>利用 <code>JavaScript</code> 的事件循环机制，优先使用微任务来执行回调，确保在 DOM 更新后触发</p>
+<h2 id="路由的hash模式和history模式"><a href="#路由的hash模式和history模式" class="headerlink" title="路由的hash模式和history模式"></a>路由的hash模式和history模式</h2><table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>Hash 模式</th>
+<th>History 模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>URL 美观性</td>
+<td>含 #，不美观</td>
+<td>无 #，更接近传统 URL</td>
+</tr>
+<tr>
+<td>服务器要求</td>
+<td>无需配置</td>
+<td>需配置重定向规则</td>
+</tr>
+<tr>
+<td>兼容性</td>
+<td>兼容性好</td>
+<td>需 IE10+ 或现代浏览器</td>
+</tr>
+<tr>
+<td>SEO 支持</td>
+<td>不友好</td>
+<td>友好（需配合服务端渲染 SSR）</td>
+</tr>
+<tr>
+<td>实现复杂度</td>
+<td>简单</td>
+<td>较复杂（需处理服务器和 History API）</td>
+</tr>
+</tbody></table>
+<p>对于一个url来说,hash值是指#及其后面的内容<br>hash值不会包含在HTTP请求中，即hash值不会带给服务器<br>history应用部署上线时需要后端人员支持，解决页面刷新服务端404问题（因为一刷新就会把路径通过请求发送给服务器，而此时的路径可能只是前端的路由切换，所以无法请求到正确的数据。一开始能点也是因为刚开始的时候只发了一次请求，剩下的都是路由切换。</p>
+<p><code>hash</code>模式：是<code>vue-router</code>的默认模式，使用哈希，url中会出现#, # 以及 # 后面的字符称之为哈希。特点：hash虽然在url中，但不被包括在http请求中</p>
+<p>history模式：因为vue打包的项目通常是一个单页应用，也就是任何的url其实指向的都是一个html文件，所以我们需要在<code>apache</code>或者<code>nginx</code>中配置，当url匹配不到资源时，指向同一个html页面的配置</p>
+<h2 id="KeepAlive"><a href="#KeepAlive" class="headerlink" title="KeepAlive"></a>KeepAlive</h2><p>包裹动态组件时，会缓存不活动的组件实例，主要用于保留组件状态或避免重新渲染</p>
+<h2 id="vue组件间的信息传递"><a href="#vue组件间的信息传递" class="headerlink" title="vue组件间的信息传递"></a>vue组件间的信息传递</h2><ul>
+<li>父组件给子组件传值：子组件通过<code>props</code>属性接受数据</li>
+<li>子组件给父组件传值：子组件通过<code>$emit</code>方法传递参数</li>
+<li>兄弟间：<code>eventBus</code>和<code>vuex</code></li>
+</ul>
+<h1 id="浏览器与网络"><a href="#浏览器与网络" class="headerlink" title="浏览器与网络"></a>浏览器与网络</h1><h2 id="从输入URL到页面渲染的完整过程是什么？"><a href="#从输入URL到页面渲染的完整过程是什么？" class="headerlink" title="从输入URL到页面渲染的完整过程是什么？"></a>从输入URL到页面渲染的完整过程是什么？</h2><ol>
+<li>DNS解析：浏览器解析 URL 中的域名，查询其对应的 IP 地址。</li>
+<li>TCP连接：浏览器与服务器建立 TCP 连接（通常使用三次握手）。</li>
+<li>发送 HTTP 请求：浏览器向服务器发送 HTTP 请求。</li>
+<li>服务器处理请求并响应：服务器根据请求返回 HTML、CSS、JS 等资源。</li>
+<li>浏览器渲染页面：浏览器开始解析 HTML 内容，构建 DOM 树，解析 CSS，生成 CSSOM 树，然后合并生成渲染树，最后绘制页面。</li>
+</ol>
+<h2 id="什么是跨域？CORS的原理是什么？如何解决跨域问题？"><a href="#什么是跨域？CORS的原理是什么？如何解决跨域问题？" class="headerlink" title="什么是跨域？CORS的原理是什么？如何解决跨域问题？"></a>什么是跨域？CORS的原理是什么？如何解决跨域问题？</h2><p>指在浏览器中，不同源的请求（不同的域名、端口或协议）会受到浏览器的安全限制。比如，前端向不同域的 API 发送请求会被浏览器拦截。<br>CORS（跨域资源共享）：是一种浏览器机制，允许服务器明确指定哪些源可以访问资源。通过 HTTP 头信息（如 Access-Control-Allow-Origin）告知浏览器，哪些请求可以跨域访问。<br>解决方法：</p>
+<ul>
+<li>CORS：通过在服务器端配置响应头，允许跨域请求。</li>
+<li>JSONP：利用 <script> 标签不受同源策略限制的特性来跨域。</li>
+<li>代理服务器：使用服务器代理请求，避免浏览器的跨域限制。</li>
+</ul>
+<h2 id="浏览器事件循环中宏任务（MacroTask）和微任务（MicroTask）的执行顺序是什么？"><a href="#浏览器事件循环中宏任务（MacroTask）和微任务（MicroTask）的执行顺序是什么？" class="headerlink" title="浏览器事件循环中宏任务（MacroTask）和微任务（MicroTask）的执行顺序是什么？"></a>浏览器事件循环中宏任务（MacroTask）和微任务（MicroTask）的执行顺序是什么？</h2><p>执行栈执行完毕，会去任务队列看是否有异步任务，有就送到执行栈执行，反复循环查看执行，这个过程就是事件循环</p>
+<ol>
+<li>执行同步代码</li>
+<li>执行所有微任务队列中的任务（如：Promise.then）。</li>
+<li>再执行下一个宏任务。</li>
+</ol>
+<h2 id="HTTP缓存策略（强缓存和协商缓存）是如何工作的？"><a href="#HTTP缓存策略（强缓存和协商缓存）是如何工作的？" class="headerlink" title="HTTP缓存策略（强缓存和协商缓存）是如何工作的？"></a>HTTP缓存策略（强缓存和协商缓存）是如何工作的？</h2><ul>
+<li>强缓存：指浏览器直接使用缓存中的资源，而不向服务器发送请求。常通过 Cache-Control 或 Expires 头来控制。<br>Cache-Control：如 max-age、no-cache 等，定义资源在客户端缓存的时长。<br>Expires：设置缓存过期时间，浏览器在该时间之前不会向服务器发起请求。</li>
+<li>协商缓存：浏览器向服务器发送请求，但服务器通过一些机制（如 Last-Modified、ETag）来判断资源是否更新，若未更新则使用缓存。</li>
+</ul>
+<h2 id="什么是XSS攻击？如何防范？"><a href="#什么是XSS攻击？如何防范？" class="headerlink" title="什么是XSS攻击？如何防范？"></a>什么是XSS攻击？如何防范？</h2><p>XSS（跨站脚本攻击）：攻击者将恶意脚本注入到网页中，这些脚本会在用户浏览网页时执行，导致敏感数据泄露、账号被盗等安全问题。<br>防范措施：<br>输入验证：对用户输入进行严格的验证，避免注入恶意脚本。<br>输出编码：对动态生成的内容进行 HTML 编码，防止脚本被执行。<br>HTTPOnly 和 Secure Cookie：使用 HTTPOnly 和 Secure 属性来增强 Cookies 的安全性。<br>CSP（内容安全策略）：通过设置 Content-Security-Policy 头来限制页面加载的资源，防止加载外部恶意脚本。</p>
+</script></li></ul></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://wwwyh123.github.io">Wyh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://wwwyh123.github.io/2025/02/09/Q-A-VUE/">http://wwwyh123.github.io/2025/02/09/Q-A-VUE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/images/xu2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/02/09/Q-A-JS/" title="Q&amp;A(JS)"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Q&A(JS)</div></div><div class="info-2"><div class="info-item-1">js原始类型vs引用数据类型原始数据类型包括：string、number、boolean、undefined、null、symbol、bigint。存储方式：值直接存储在栈内存中。引用类型：包括：Object、Array、Function、Date 等。存储方式：值存储在堆内存中，栈中存储的是堆内存的地址引用。typeof null; 返回 ‘object’（历史遗留问题） let、const、var的区别是什么？为什么要用let取代var？变量提升：var 声明的变量会提升到作用域顶部，初始值为undefined。  let 块级作用域，可重新赋值，但不可重复声明 const 块级作用域，声明时必须初始化，不可重新赋值，但对象&#x2F;数组的内容可修改（引用不变）。 var...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/xu2.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wyh</div><div class="author-info-description">正确的开始，微小的长进，然后持续。</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wwwyh123"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to my blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vue"><span class="toc-number">1.</span> <span class="toc-text">vue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.1.</span> <span class="toc-text">vue生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E4%B8%AD%EF%BC%8Ccreated%E5%92%8Cmounted%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">Vue的生命周期钩子中，created和mounted的区别是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AE%83%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">什么是虚拟DOM？为什么需要它？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BB%A3%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">数据代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">1.5.</span> <span class="toc-text">数据双向绑定的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue2%E5%92%8CVue3%E5%9C%A8%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E4%B8%8A%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">Vue2和Vue3在响应式原理上的主要区别是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E4%B8%AD%E7%9A%84nextTick%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.7.</span> <span class="toc-text">Vue中的nextTick是什么？它的作用是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue%E7%9A%84v-if%E5%92%8Cv-show%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F%E6%80%A7%E8%83%BD%E4%B8%8A%E6%9C%89%E4%BD%95%E5%B7%AE%E5%BC%82%EF%BC%9F"><span class="toc-number">1.8.</span> <span class="toc-text">Vue的v-if和v-show有什么区别？性能上有何差异？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFVue%E7%9A%84%E6%B7%B7%E5%85%A5%EF%BC%88Mixin%EF%BC%89%EF%BC%9F%E5%AE%83%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.9.</span> <span class="toc-text">什么是Vue的混入（Mixin）？它的优缺点是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue3%E7%9A%84%E8%AF%AD%E6%B3%95%E7%B3%96%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">1.10.</span> <span class="toc-text">Vue3的&lt;script setup&gt;语法糖解决了什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nextTick%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">1.11.</span> <span class="toc-text">nextTick实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%9A%84hash%E6%A8%A1%E5%BC%8F%E5%92%8Chistory%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.12.</span> <span class="toc-text">路由的hash模式和history模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KeepAlive"><span class="toc-number">1.13.</span> <span class="toc-text">KeepAlive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%92"><span class="toc-number">1.14.</span> <span class="toc-text">vue组件间的信息传递</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8E%E7%BD%91%E7%BB%9C"><span class="toc-number">2.</span> <span class="toc-text">浏览器与网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E5%AE%8C%E6%95%B4%E8%BF%87%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">2.1.</span> <span class="toc-text">从输入URL到页面渲染的完整过程是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F%EF%BC%9FCORS%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="toc-number">2.2.</span> <span class="toc-text">什么是跨域？CORS的原理是什么？如何解决跨域问题？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/Q-A-VUE/" title="Q&amp;A(VUE)">Q&amp;A(VUE)</a><time datetime="2025-02-09T09:08:43.000Z" title="Created 2025-02-09 17:08:43">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/09/Q-A-JS/" title="Q&amp;A(JS)">Q&amp;A(JS)</a><time datetime="2025-02-09T09:08:23.000Z" title="Created 2025-02-09 17:08:23">2025-02-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/02/02/vue-0/" title="Q&amp;A(HTML&amp;CSS)">Q&amp;A(HTML&amp;CSS)</a><time datetime="2025-02-02T06:01:08.000Z" title="Created 2025-02-02 14:01:08">2025-02-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/24/%E7%AE%97%E6%B3%95/" title="算法">算法</a><time datetime="2025-01-24T13:38:53.000Z" title="Created 2025-01-24 21:38:53">2025-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/01/18/%E5%85%B3%E4%BA%8Ejs/" title="关于js">关于js</a><time datetime="2025-01-18T06:49:42.000Z" title="Created 2025-01-18 14:49:42">2025-01-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By Wyh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional and Simplified Chinese">2</button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
