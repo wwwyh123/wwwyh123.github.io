@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>性能优化</title>
+      <link href="/2025/07/13/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+      <url>/2025/07/13/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<ol><li>打开速度怎么变快 – 首屏加载优化</li><li>再次打开速度怎么变快 – 缓存优化</li><li>操作怎样才顺滑 – 渲染优化</li><li>动画怎么保证流畅 – 长任务拆分</li></ol><p>  <strong>说明问题，怎么衡量加载情况好了多少</strong></p><h2 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h2><ol><li><code>FP</code> (<code>First Paint</code> 首次绘制)（像素）</li><li><code>FCP</code> (FIRST Contentful Paint 首次内容绘制)，<code>FP</code> 到 <code>FCP</code> 中间其实主要是SPA 应用 js执行，太慢就会白屏时间太长，浏览器提供的<code>API</code>计算(<code>Performance</code>)</li><li>FMP (First Meaningful Paint 首次有效绘制)，主要内容呈现的时间  <code>Mutation Observer</code></li><li>LCP (Largest Contentful Paint 最大内容渲染)，加载最大内容块呈现时间 </li><li>INP(Interaction to Next Paint),用户与页面进行交互（如点击、滚动或按键）到浏览器能够响应并更新界面之间的时间</li><li>TTI 可交互时间(指单独执行js文件来实现事件绑定这段时间)在SSR中需要重点考虑</li><li>TBT (Total Blocking Time 阻塞时间从FCP到TTI):总阻塞时间</li><li>CLS布局偏移分数(布局偏移情况，重排)</li><li>TTFB(Time to First Byte):首字节到达时间，请求发出后到接收到数据中间的时间</li></ol><h2 id="动画卡顿"><a href="#动画卡顿" class="headerlink" title="动画卡顿"></a>动画卡顿</h2><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><ol><li>减少主线程阻塞<ul><li>优化 js 执行，减少长任务(复杂的计算)可以用【Web worker,将任务切分</li></ul></li><li><code>GPU</code><ul><li><code>css</code>属性(<code>transform</code>,<code>opacity</code>)</li><li>避免会引起重排的属性 (定位 <code>left</code>,<code>top</code>)</li></ul></li><li><code>requestAnimationFrame</code></li><li>节流防抖</li></ol><h3 id="方案-1"><a href="#方案-1" class="headerlink" title="方案"></a>方案</h3><h4 id="资源加载优化"><a href="#资源加载优化" class="headerlink" title="资源加载优化"></a>资源加载优化</h4><ol><li>减小资源体积<ul><li>优化图片：Webp,图片压缩，图片尺寸(在合适的容器内使用合适的尺寸图片 1倍2倍3倍图)</li><li>移除冗余依赖：删除未使用的组件，库</li></ul></li><li>预加载关键资源<ul><li>使用<code>&lt;link rel=&quot;preload&quot;&gt;</code> 预加载关键<code>CSS</code>&#x2F;<code>JS</code>&#x2F;字体</li><li>在<code>onLoad</code>阶段发起接口请求，避免渲染阻塞</li></ul></li><li><code>CDN</code>加速：将图片、<code>CSS</code>、<code>JS</code>部署到<code>CDN</code>节点。</li><li>缓存(强缓存(<code>Expire</code>,<code>Cache-Control</code>),协商缓存(<code>Last-Modified</code>,<code>If-Modified-Since</code>,<code>Etag</code>,<code>If-None-Match</code>),策略缓存<code>service-worker</code>)</li><li>css,js文件压缩，打包构建阶段完成<ul><li>代码压缩</li><li>文件合并</li><li>文件拆分</li><li>Tree shaking (条件esm)</li><li>动态加载</li></ul></li><li>Gzip,Brotli</li></ol><h4 id="渲染优化"><a href="#渲染优化" class="headerlink" title="渲染优化"></a>渲染优化</h4><ol><li>服务端渲染(<code>SSR</code>):SSR在服务器生成HTML，减少客户端解析和执行JS的时间。</li><li>懒加载资源，图片懒加载，js异步加载<ul><li>使用 <code>IntersectionObserver</code> 实现图片&#x2F;组件懒加载。</li><li>延迟加载非关键JS&#x2F;CSS（如 async&#x2F;defer 标签）。</li></ul></li></ol><h4 id="代码与组件优化"><a href="#代码与组件优化" class="headerlink" title="代码与组件优化"></a>代码与组件优化</h4><ol><li>组件按需加载(用import()动态加载组件)</li><li>延迟加载：滚动加载，可视区域内容渲染</li><li>精简三方库<ul><li>库内容要支持按需导入 <code>babel-plugin-import</code></li><li>国际化文件要移除</li></ul></li></ol><h2 id="重绘和重排"><a href="#重绘和重排" class="headerlink" title="重绘和重排"></a>重绘和重排</h2><p><a href="https://juejin.cn/post/6844904083212468238">https://juejin.cn/post/6844904083212468238</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>前端安全</title>
       <link href="/2025/06/30/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/"/>
       <url>/2025/06/30/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8/</url>
